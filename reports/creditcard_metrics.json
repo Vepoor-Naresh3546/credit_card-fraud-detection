@@ -1,0 +1,22 @@
+{
+  "threshold": 0.99,
+  "precision": 0.674157,
+  "recall": 0.810811,
+  "f1": 0.736196,
+  "roc_auc": 0.967972,
+  "average_precision": 0.792873,
+  "confusion_matrix_tn_fp_fn_tp": [
+    42619,
+    29,
+    14,
+    60
+  ],
+  "test_rows": 42722,
+  "test_fraud_count": 74,
+  "test_fraud_rate_percent": 0.173213,
+  "train_rows": 199364,
+  "validation_rows": 42721,
+  "features_count": 30,
+  "dataset": "Kaggle Credit Card Fraud Detection (creditcard.csv)",
+  "model": "StandardScaler + LogisticRegression(class_weight=balanced)"
+}

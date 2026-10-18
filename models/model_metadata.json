@@ -1,0 +1,16 @@
+{
+  "model_version": "0.1.0",
+  "feature_columns": [
+    "amount",
+    "hour",
+    "transactions_last_1h",
+    "avg_amount_24h",
+    "amount_to_avg_ratio",
+    "is_international",
+    "new_device",
+    "merchant_risk_score"
+  ],
+  "threshold": 0.5599999999999999,
+  "training_data": "synthetic_rule_generated_demo",
+  "warning": "Synthetic evaluation is not evidence of real-world fraud performance."
+}

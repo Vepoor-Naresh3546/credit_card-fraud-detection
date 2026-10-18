@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install project dependencies
+        run: python -m pip install -r requirements.txt -r requirements-quality.txt
+      - name: Run unit tests
+        run: python -m pytest -q tests
+      - name: Compile Python modules
+        run: python -m compileall -q app_real.py train_real.py fraud_platform scripts airflow/dags feature_repo/creditcard_fraud
+      - name: Validate JSON configuration
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for path in [Path("schemas/transaction-event.schema.json"),
+                       Path("monitoring/grafana/dashboards/fraud-platform.json")]:
+              json.loads(path.read_text(encoding="utf-8"))
+          PY
+      - name: Validate Compose configuration
+        run: |
+          cp .env.example .env
+          docker compose config --quiet
+      - name: Validate Kubernetes manifests
+        run: |
+          curl -fsSLo kubectl https://dl.k8s.io/release/v1.31.0/bin/linux/amd64/kubectl
+          chmod +x kubectl
+          ./kubectl kustomize k8s >/dev/null

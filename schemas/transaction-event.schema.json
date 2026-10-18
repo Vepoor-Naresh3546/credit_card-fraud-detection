@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/transaction-event.v1.json",
+  "title": "Fraud Transaction Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "event_id", "event_timestamp", "transaction"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "event_id": {"type": "string", "format": "uuid"},
+    "event_timestamp": {"type": "string", "format": "date-time"},
+    "transaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["transaction_id", "Time", "Amount", "V1", "V2", "V3", "V4", "V5", "V6", "V7", "V8", "V9", "V10", "V11", "V12", "V13", "V14", "V15", "V16", "V17", "V18", "V19", "V20", "V21", "V22", "V23", "V24", "V25", "V26", "V27", "V28"],
+      "properties": {
+        "transaction_id": {"type": "string", "minLength": 1, "maxLength": 100},
+        "Time": {"type": "number", "minimum": 0},
+        "Amount": {"type": "number", "minimum": 0, "maximum": 1000000},
+        "V1": {"type": "number"}, "V2": {"type": "number"},
+        "V3": {"type": "number"}, "V4": {"type": "number"},
+        "V5": {"type": "number"}, "V6": {"type": "number"},
+        "V7": {"type": "number"}, "V8": {"type": "number"},
+        "V9": {"type": "number"}, "V10": {"type": "number"},
+        "V11": {"type": "number"}, "V12": {"type": "number"},
+        "V13": {"type": "number"}, "V14": {"type": "number"},
+        "V15": {"type": "number"}, "V16": {"type": "number"},
+        "V17": {"type": "number"}, "V18": {"type": "number"},
+        "V19": {"type": "number"}, "V20": {"type": "number"},
+        "V21": {"type": "number"}, "V22": {"type": "number"},
+        "V23": {"type": "number"}, "V24": {"type": "number"},
+        "V25": {"type": "number"}, "V26": {"type": "number"},
+        "V27": {"type": "number"}, "V28": {"type": "number"}
+      }
+    }
+  }
+}

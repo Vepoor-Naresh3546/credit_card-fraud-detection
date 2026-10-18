@@ -1,0 +1,35 @@
+groups:
+  - name: fraud-platform
+    rules:
+      - alert: FraudApiDown
+        expr: up{job="fraud-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: Fraud API metrics endpoint is unavailable
+      - alert: FraudApiHigh5xxRate
+        expr: |
+          sum(rate(creditcard_api_requests_total{status=~"5.."}[5m]))
+          /
+          clamp_min(sum(rate(creditcard_api_requests_total[5m])), 0.001)
+          > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: Fraud API 5xx rate is above 5 percent
+      - alert: FraudWorkerDeadLetters
+        expr: increase(creditcard_worker_events_total{outcome="dead_lettered"}[10m]) > 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: Fraud worker has sent an event to the dead-letter topic
+      - alert: FraudFeatureDrift
+        expr: max(creditcard_feature_drift_psi) > 0.2
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          summary: Fraud model feature PSI exceeded 0.2 for at least one feature

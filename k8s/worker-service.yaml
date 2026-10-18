@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fraud-worker-metrics
+  namespace: fraud-platform
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: fraud-scoring-worker
+  ports:
+    - name: metrics
+      port: 9101
+      targetPort: metrics

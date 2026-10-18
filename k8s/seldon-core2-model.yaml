@@ -1,0 +1,10 @@
+apiVersion: mlops.seldon.io/v1alpha1
+kind: Model
+metadata:
+  name: creditcard-fraud
+  namespace: fraud-platform
+spec:
+  storageUri: s3://REPLACE_WITH_PRIVATE_MODEL_BUCKET/creditcard-fraud
+  requirements:
+    - sklearn
+  memory: 1Gi

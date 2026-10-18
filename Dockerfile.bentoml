@@ -1,0 +1,17 @@
+FROM python:3.12-slim-bookworm
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    MODEL_PATH=/app/models/creditcard_model.joblib \
+    MODEL_METADATA_PATH=/app/models/creditcard_model_metadata.json
+
+WORKDIR /app
+COPY requirements.txt requirements-bentoml.txt ./
+RUN pip install --no-cache-dir -r requirements.txt -r requirements-bentoml.txt
+COPY app_real.py train_real.py ./
+COPY fraud_platform ./fraud_platform
+COPY models/creditcard_model.joblib models/creditcard_model_metadata.json ./models/
+
+EXPOSE 3000
+CMD ["bentoml", "serve", "fraud_platform.bento_service:FraudCardService", "--host", "0.0.0.0", "--port", "3000"]

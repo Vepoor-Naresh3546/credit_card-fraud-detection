@@ -1,0 +1,18 @@
+{
+  "threshold": 0.56,
+  "precision": 0.778,
+  "recall": 0.6406,
+  "f1": 0.7027,
+  "roc_auc": 0.8994,
+  "average_precision": 0.7739,
+  "confusion_matrix_tn_fp_fn_tp": [
+    3743,
+    117,
+    230,
+    410
+  ],
+  "train_rows": 21000,
+  "validation_rows": 4500,
+  "test_rows": 4500,
+  "test_fraud_rate_percent": 14.222
+}

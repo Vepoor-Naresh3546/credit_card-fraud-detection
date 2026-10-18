@@ -1,0 +1,8 @@
+Start in this order:
+1. Open this folder in VS Code.
+2. Follow README.md section 2 to install dependencies in a Python 3.12 virtual environment.
+3. Run: python generate_data.py
+4. Run: python train.py
+5. Run: $env:FRAUD_API_KEY = "local-demo-key-change-this"
+6. Run: uvicorn app:app --reload
+7. Visit http://127.0.0.1:8000/docs

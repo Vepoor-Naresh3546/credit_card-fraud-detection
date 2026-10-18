@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fraud-api
+  namespace: fraud-platform
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: fraud.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: fraud-api
+                port:
+                  number: 8000

@@ -1,0 +1,24 @@
+.venv/
+.venv-*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.env
+/data/creditcard.csv
+/data/transactions.csv
+mlruns/
+mlflow.db
+data/*.sqlite3
+data/processed/
+feature_repo/data/
+feature_repo/data/*.db
+models/candidates/
+models/backups/
+reports/candidates/
+reports/pipeline/
+reports/batch_scores.csv
+.env.*
+!./data/*.csv
+/README (2).mdenv.example

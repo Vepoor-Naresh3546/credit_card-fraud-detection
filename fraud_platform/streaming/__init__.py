@@ -1,0 +1,1 @@
+"""Kafka transaction event processing."""

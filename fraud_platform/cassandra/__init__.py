@@ -1,0 +1,1 @@
+"""Cassandra event persistence."""

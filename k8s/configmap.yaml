@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fraud-platform-config
+  namespace: fraud-platform
+data:
+  MODEL_PATH: /app/models/creditcard_model.joblib
+  MODEL_METADATA_PATH: /app/models/creditcard_model_metadata.json
+  MAX_BATCH_SIZE: "50"
+  MAX_REQUEST_BYTES: "1048576"
+  MAX_REQUESTS_PER_MINUTE: "120"
+  REQUEST_TIMEOUT_SECONDS: "10"
+  LOG_LEVEL: INFO
+  KAFKA_BOOTSTRAP_SERVERS: kafka.example.svc.cluster.local:9092
+  CASSANDRA_HOSTS: cassandra.example.svc.cluster.local
